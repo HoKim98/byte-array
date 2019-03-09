@@ -1,0 +1,27 @@
+[package]
+name = "byte_array"
+version = "0.1.0"
+authors = ["Ho Kim <besqer996@gnu.ac.kr>"]
+edition = "2018"
+
+documentation = "https://docs.rs/byte_array"
+repository = "https://github.com/kerryeon/byte-array"
+
+description = "A library that supports Java-like series processing with byteorder."
+keywords = [
+    "bytearray",
+]
+readme = "README.md"
+
+license = "MIT"
+
+include = [
+    "src/**/*",
+    "tests/**/*",
+    "Cargo.toml",
+    "LICENSE",
+    "README.md",
+]
+
+[dependencies]
+byteorder = "1"
