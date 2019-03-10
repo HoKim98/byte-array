@@ -122,15 +122,18 @@ impl BinaryBuilder for ByteArray {
         Self::new()
     }
 
-    fn from_raw(raw: &mut Self) -> Self {
+    fn from_raw(ba: &mut ByteArray) -> Self {
+        let pointer: usize = ba.read();
+        let raw: BytesDyn = ba.read();
         ByteArray {
-            raw: raw.as_vec().clone(),
-            pointer: 0,
+            raw,
+            pointer,
         }
     }
 
-    fn to_raw(&self, ba: &mut Self) {
-        ba.as_vec().append(&mut self.raw.clone());
+    fn to_raw(&self, mut ba: &mut Self) {
+        ba <<= &self.pointer;
+        ba <<= &self.raw;
     }
 }
 

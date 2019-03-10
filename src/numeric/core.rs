@@ -46,16 +46,18 @@ impl BinaryBuilder for $type {
 
 };}
 
-generate!(u16   with default: 0 , toward: u16, endian: BigEndian, read: read_u16, write: write_u16);
-generate!(u32   with default: 0 , toward: u32, endian: BigEndian, read: read_u32, write: write_u32);
-generate!(u64   with default: 0 , toward: u64, endian: BigEndian, read: read_u64, write: write_u64);
+generate!(u16   with default: 0 , toward: u16,  endian: BigEndian, read: read_u16 , write: write_u16 );
+generate!(u32   with default: 0 , toward: u32,  endian: BigEndian, read: read_u32 , write: write_u32 );
+generate!(u64   with default: 0 , toward: u64,  endian: BigEndian, read: read_u64 , write: write_u64 );
+generate!(u128  with default: 0 , toward: u128, endian: BigEndian, read: read_u128, write: write_u128);
 
-generate!(i16   with default: 0 , toward: i16, endian: BigEndian, read: read_i16, write: write_i16);
-generate!(i32   with default: 0 , toward: i32, endian: BigEndian, read: read_i32, write: write_i32);
-generate!(i64   with default: 0 , toward: i64, endian: BigEndian, read: read_i64, write: write_i64);
+generate!(i16   with default: 0 , toward: i16,  endian: BigEndian, read: read_i16 , write: write_i16 );
+generate!(i32   with default: 0 , toward: i32,  endian: BigEndian, read: read_i32 , write: write_i32 );
+generate!(i64   with default: 0 , toward: i64,  endian: BigEndian, read: read_i64 , write: write_i64 );
+generate!(i128  with default: 0 , toward: i128, endian: BigEndian, read: read_i128, write: write_i128);
 
-generate!(usize with default: 0 , toward: u64, endian: BigEndian, read: read_u64, write: write_u64);
-generate!(isize with default: 0 , toward: i64, endian: BigEndian, read: read_i64, write: write_i64);
+generate!(usize with default: 0 , toward: u64,  endian: BigEndian, read: read_u64 , write: write_u64 );
+generate!(isize with default: 0 , toward: i64,  endian: BigEndian, read: read_i64 , write: write_i64 );
 
-generate!(f32   with default: 0., toward: f32, endian: BigEndian, read: read_f32, write: write_f32);
-generate!(f64   with default: 0., toward: f64, endian: BigEndian, read: read_f64, write: write_f64);
+generate!(f32   with default: 0., toward: f32,  endian: BigEndian, read: read_f32 , write: write_f32 );
+generate!(f64   with default: 0., toward: f64,  endian: BigEndian, read: read_f64 , write: write_f64 );

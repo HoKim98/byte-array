@@ -1,6 +1,6 @@
 [package]
 name = "byte_array"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Ho Kim <besqer996@gnu.ac.kr>"]
 edition = "2018"
 

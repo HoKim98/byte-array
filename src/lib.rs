@@ -13,10 +13,13 @@
 #![feature(external_doc)]
 #[doc(include = "../README.md")]
 
+// Core
 mod builder;
 mod byte_array;
-mod bytes;
+
+// Built-in Implementation
 mod numeric;
+mod bytes;
 mod string;
 
 pub use self::builder::BinaryBuilder;

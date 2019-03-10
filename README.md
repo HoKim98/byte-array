@@ -21,18 +21,21 @@ fn main() {
     let mut ba = ByteArray::new();
     
     // Input data
-    let a: f64 = 3.14;
-    let b: u16 = 1234;
+    let a: f64      = 3.14;
+    let b: u16      = 1234;
+    let c: String   = String::from("hello");
     
     // Write data to ByteArray
     ba.write(&a);
     // ( Using Operator <<= )
     ba <<= &b;
+    ba <<= &c;
     
     // Read data from ByteArray
     ba.seek_first();
-    assert_eq!(a, ba.read::<f64>());  // 3.14
-    assert_eq!(b, ba.read::<u16>());  // 1234
+    assert_eq!(a, ba.read::<f64>());    // 3.14
+    assert_eq!(b, ba.read::<u16>());    // 1234
+    assert_eq!(c, ba.read::<String>()); // "hello"
 }
 ```
 
@@ -44,10 +47,12 @@ fn main() {
 | u16           | Yes       |
 | u32           | Yes       |
 | u64           | Yes       |
+| u128          | Yes       |
 | i8            | Yes       |
 | i16           | Yes       |
 | i32           | Yes       |
 | i64           | Yes       |
+| i128          | Yes       |
 | f32           | Yes       |
 | f64           | Yes       |
 |---------------|-----------|
@@ -56,6 +61,7 @@ fn main() {
 |---------------|-----------|
 | Vec<u8>       | Yes       |
 | String        | Yes       |
+| ByteArray     | Yes       |
 | User-Defined  | Optional  |
 
 # Documentation
