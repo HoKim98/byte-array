@@ -99,6 +99,12 @@ impl ByteArray {
         self.raw.len()
     }
 
+    /// Gets the byte distance from the end of the data to the current read.
+    ///
+    pub fn bytes_available(&self) -> usize {
+        self.len() - self.now()
+    }
+
     /// Gets the byte distance from the start of the data to the current read.
     ///
     pub const fn now(&self) -> usize {

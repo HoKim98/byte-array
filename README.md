@@ -50,8 +50,13 @@ fn main() {
 | i64           | Yes       |
 | f32           | Yes       |
 | f64           | Yes       |
-| str           | Not Yet   |
-| User-Defined  | Yes       |
+|---------------|-----------|
+| usize as u64  | Yes       |
+| isize as i64  | Yes       |
+|---------------|-----------|
+| Vec<u8>       | Yes       |
+| String        | Yes       |
+| User-Defined  | Optional  |
 
 # Documentation
 [Docs.rs](https://docs.rs/byte_array)

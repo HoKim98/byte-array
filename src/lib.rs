@@ -15,6 +15,7 @@
 
 mod builder;
 mod byte_array;
+mod bytes;
 mod numeric;
 mod string;
 

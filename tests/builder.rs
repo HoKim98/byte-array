@@ -66,4 +66,7 @@ fn test_mut() {
     assert_eq!(my_data.id, my_data_recon.id);
     assert_eq!(my_data.pw, my_data_recon.pw);
 
+    assert_eq!(ba.bytes_available(), 0);
+    assert_eq!(ba.now(), 16);
+
 }

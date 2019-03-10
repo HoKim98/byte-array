@@ -7,7 +7,7 @@
         Email: "besqer996@gnu.ac.kr"
         Github: "https://github.com/kerryeon"
     Generated:
-        Date: "3/9/2019"
+        Date: "3/10/2019"
 ------------------------------------------------------------ */
 
 use crate::{
@@ -15,15 +15,27 @@ use crate::{
     ByteArray,
 };
 
-impl BinaryBuilder for String {
+impl BinaryBuilder for Vec<u8> {
     fn new() -> Self {
-        String::new()
+        vec![]
     }
     fn from_raw(ba: &mut ByteArray) -> Self {
-        let raw: Vec<u8> = ba.read();
-        String::from_utf8(raw).unwrap()
+        // Length
+        let len: usize = ba.read();
+        // Bytes Begin
+        let now: usize = ba.now();
+        // Bytes End
+        ba.seek_next(len);
+        // Read
+        let mut raw = vec![0; len];
+        raw.clone_from_slice(&ba.as_vec()[now..now+len]);
+        // Return
+        raw
     }
     fn to_raw(&self, mut ba: &mut ByteArray) {
-        ba <<= &self.as_bytes().to_vec();
+        // Length
+        ba <<= &self.len();
+        // Write
+        ba.as_vec().extend_from_slice(self);
     }
 }
