@@ -28,10 +28,10 @@ impl BinaryBuilder for $type {
     fn new() -> Self {
         $default
     }
-    fn from_raw(ba: &mut ByteArray) -> Self {
+    fn from_raw(ba: &mut ByteArray) -> Option<Self> {
         let now = ba.now();
-        ba.seek_next(size_of::<Self>());
-        $endian::$read(&ba.as_vec()[now..]) as $type
+        ba.seek_next(size_of::<Self>())?;
+        Some($endian::$read(&ba.as_vec()[now..]) as $type)
     }
     fn to_raw(&self, ba: &mut ByteArray) {
         let len = ba.len();

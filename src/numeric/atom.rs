@@ -23,10 +23,10 @@ impl BinaryBuilder for $type {
     fn new() -> Self {
         $default
     }
-    fn from_raw(ba: &mut ByteArray) -> Self {
+    fn from_raw(ba: &mut ByteArray) -> Option<Self> {
         let now = ba.now();
-        ba.seek_next(size_of::<Self>());
-        ba.as_vec()[now] $($from )*
+        ba.seek_next(size_of::<Self>())?;
+        Some(ba.as_vec()[now] $($from )*)
     }
     fn to_raw(&self, ba: &mut ByteArray) {
         ba.as_vec().push(*self as u8);

@@ -35,7 +35,7 @@ fn test() {
     let mut ba_inn_new: ByteArray = ba_out.read();
 
     assert_eq!(ba_inn_new.read::<u8 >(), 2);
-    assert_eq!(ba_inn_new.read::<u16>(), 3);
+    assert_eq!(ba_inn_new.read_safe::<u16>(), Some(3));
 
     assert_eq!(ba_inn_new.bytes_available(), 0);
     assert_eq!(ba_inn_new.now(), 4);

@@ -28,11 +28,11 @@ impl BinaryBuilder for MyData {
         }
     }
 
-    fn from_raw(ba: &mut ByteArray) -> Self {
-        Self {
-            id: ba.read(),
-            pw: ba.read(),
-        }
+    fn from_raw(ba: &mut ByteArray) -> Option<Self> {
+        Some(Self {
+            id: ba.read_safe()?,
+            pw: ba.read_safe()?,
+        })
     }
     fn to_raw(&self, mut ba: &mut ByteArray) {
         ba <<= &self.id;

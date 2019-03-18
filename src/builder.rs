@@ -29,8 +29,8 @@ use crate::ByteArray;
 ///        Self(123)
 ///    }
 ///
-///    fn from_raw(ba: &mut ByteArray) -> Self {
-///        Self(ba.read())
+///    fn from_raw(ba: &mut ByteArray) -> Option<Self> {
+///        Some(Self(ba.read_safe()?))
 ///    }
 ///    fn to_raw(&self, mut ba: &mut ByteArray) {
 ///        ba <<= &self.0;
@@ -62,7 +62,7 @@ pub trait BinaryBuilder: Sized {
     /// # Panics
     /// Panics when unexpected EOF.
     ///
-    fn from_raw(ba: &mut ByteArray) -> Self;
+    fn from_raw(ba: &mut ByteArray) -> Option<Self>;
 
     /// Adds data to the `ByteArray`.
     ///

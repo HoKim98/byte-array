@@ -33,9 +33,9 @@ fn main() {
     
     // Read data from ByteArray
     ba.seek_first();
-    assert_eq!(a, ba.read::<f64>());    // 3.14
-    assert_eq!(b, ba.read::<u16>());    // 1234
-    assert_eq!(c, ba.read::<String>()); // "hello"
+    assert_eq!(a, ba.read::<f64>());                // 3.14
+    assert_eq!(b, ba.read_safe::<u16>().unwrap());  // 1234
+    assert_eq!(c, ba.read::<String>());             // "hello"
 }
 ```
 

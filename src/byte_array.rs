@@ -31,7 +31,7 @@ type BytesDyn = Vec<u8>;
 /// // Read
 /// ba.seek_first();
 /// assert_eq!(3.14, ba.read::<f64>());
-/// assert_eq!(1234, ba.read::<u16>());
+/// assert_eq!(1234, ba.read_safe::<u16>().unwrap());
 /// ```
 ///
 pub struct ByteArray {
@@ -58,6 +58,14 @@ impl ByteArray {
     /// Panics when unexpected EOF.
     ///
     pub fn read<T>(&mut self) -> T where T: BinaryBuilder {
+        self.read_safe::<T>().unwrap()
+    }
+
+    /// Gets the data of the specified type in the `ByteArray` safely.
+    ///
+    /// But, the data to be read must implement `BinaryBuilder` trait.
+    ///
+    pub fn read_safe<T>(&mut self) -> Option<T> where T: BinaryBuilder {
         T::from_raw(self)
     }
 
@@ -81,10 +89,17 @@ impl ByteArray {
         self.seek(self.len())
     }
 
-    /// Skips as many bytes as you want.
+    /// Skips as many bytes as you want safely.
     ///
-    pub fn seek_next(&mut self, stride: usize) {
-        self.pointer += stride
+    pub fn seek_next(&mut self, stride: usize) -> Option<()> {
+        self.pointer += stride;
+        match self.pointer <= self.len() {
+            true => Some(()),
+            false => {
+                self.pointer = self.len();
+                None
+            },
+        }
     }
 
     /// Gets the actual data stored in the `ByteArray`.
@@ -122,13 +137,13 @@ impl BinaryBuilder for ByteArray {
         Self::new()
     }
 
-    fn from_raw(ba: &mut ByteArray) -> Self {
-        let pointer: usize = ba.read();
-        let raw: BytesDyn = ba.read();
-        ByteArray {
+    fn from_raw(ba: &mut ByteArray) -> Option<Self> {
+        let pointer: usize = ba.read_safe()?;
+        let raw: BytesDyn = ba.read_safe()?;
+        Some(ByteArray {
             raw,
             pointer,
-        }
+        })
     }
 
     fn to_raw(&self, mut ba: &mut Self) {

@@ -19,9 +19,9 @@ impl BinaryBuilder for String {
     fn new() -> Self {
         String::new()
     }
-    fn from_raw(ba: &mut ByteArray) -> Self {
-        let raw: Vec<u8> = ba.read();
-        String::from_utf8(raw).unwrap()
+    fn from_raw(ba: &mut ByteArray) -> Option<Self> {
+        let raw: Vec<u8> = ba.read_safe()?;
+        Some(String::from_utf8(raw).unwrap())
     }
     fn to_raw(&self, mut ba: &mut ByteArray) {
         ba <<= &self.as_bytes().to_vec();
