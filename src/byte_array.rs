@@ -35,8 +35,8 @@ type BytesDyn = Vec<u8>;
 /// ```
 ///
 pub struct ByteArray {
-    raw: BytesDyn,
-    pointer: usize,
+    pub raw: BytesDyn,
+    pub pointer: usize,
 }
 
 impl ByteArray {
