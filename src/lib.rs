@@ -10,9 +10,6 @@
         Date: "3/8/2019"
 ------------------------------------------------------------ */
 
-#![feature(external_doc)]
-#[doc(include = "../README.md")]
-
 // Core
 mod builder;
 mod byte_array;
